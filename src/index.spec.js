@@ -1,7 +1,10 @@
-import 'should';
-
+import chai from 'chai';
+import chaiSubset from 'chai-subset';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+
+chai.use(chaiSubset);
+chai.should();
 
 Enzyme.configure({ adapter: new Adapter() });
 

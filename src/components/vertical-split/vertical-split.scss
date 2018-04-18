@@ -1,17 +1,23 @@
 .vertical-split {
   display: flex;
+
+  &.horizontal {
+    flex-direction: column;
+  }
+
   width: 100%;
   height: 100%;
 
   .pane {
-    &.active .frame {
-      border: 2px solid yellow;
-    }
-
+    flex-basis: 0;
     flex-grow: 1;
 
     display: flex;
     flex-direction: column;
+
+    &.active .frame {
+      border: 2px solid yellow;
+    }
 
     .header {
       padding: 4px;

@@ -7,13 +7,13 @@ describe('Split', () => {
     const split = Split();
 
     let results = split({ first: 'one' });
-    results.should.deepEqual({});
+    results.should.deep.equal([]);
 
     //
     const stubA = stub();
     const removeA = split.add(stubA);
 
-    removeA.should.be.a.Function();
+    removeA.should.be.a('function');
     removeA.id.should.equal(1);
 
     //
@@ -23,14 +23,14 @@ describe('Split', () => {
     results = split({ second: 'one' });
 
     stubA.callCount.should.equal(1);
-    stubA.getCall(0).args[0].should.deepEqual({ second: 'one' });
-    results.should.deepEqual({ 1: 'stubA-1' });
+    stubA.getCall(0).args[0].should.deep.equal({ second: 'one' });
+    results.should.deep.equal(['stubA-1']);
 
     //
     const stubB = stub();
     const removeB = split.add(stubB);
 
-    removeB.should.be.a.Function();
+    removeB.should.be.a('function');
     removeB.id.should.equal(2);
 
     //
@@ -42,9 +42,9 @@ describe('Split', () => {
 
     stubA.callCount.should.equal(2);
     stubB.callCount.should.equal(1);
-    stubA.getCall(1).args[0].should.deepEqual({ another: 'time' });
-    stubB.getCall(0).args[0].should.deepEqual({ another: 'time' });
-    results.should.deepEqual({ 1: 'stubB-2', 2: 'b stub: first' });
+    stubA.getCall(1).args[0].should.deep.equal({ another: 'time' });
+    stubB.getCall(0).args[0].should.deep.equal({ another: 'time' });
+    results.should.have.members(['stubB-2', 'b stub: first']);
 
     //
     removeA();
@@ -53,8 +53,8 @@ describe('Split', () => {
 
     stubA.callCount.should.equal(2);
     stubB.callCount.should.equal(2);
-    stubB.getCall(1).args[0].should.deepEqual({ final: 'test' });
-    results.should.deepEqual({ 2: 'b stub: second' });
+    stubB.getCall(1).args[0].should.deep.equal({ final: 'test' });
+    results.should.deep.equal(['b stub: second']);
 
     //
     removeB();
@@ -62,6 +62,6 @@ describe('Split', () => {
 
     stubA.callCount.should.equal(2);
     stubB.callCount.should.equal(2);
-    results.should.deepEqual({});
+    results.should.deep.equal([]);
   });
 });

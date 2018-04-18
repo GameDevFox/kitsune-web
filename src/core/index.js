@@ -14,7 +14,7 @@ export const pipe = (...fns) => {
   };
 };
 
-export const superMap = (input, fn) => {
+export const easyMap = (input, fn) => {
   let result = null;
 
   if(_.isPlainObject(input))
@@ -25,4 +25,18 @@ export const superMap = (input, fn) => {
     result = fn(input);
 
   return result;
+};
+
+export const filterMap = mappings => {
+  return input => {
+    const result = [];
+
+    mappings.forEach(mapping => {
+      const [filterFn, value] = mapping;
+      if(filterFn(input))
+        result.push(value);
+    });
+
+    return result;
+  };
 };

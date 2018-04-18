@@ -7,7 +7,7 @@ describe('Action', () => {
     const a = Action(TEST_TYPE);
     const data = a({ name: 'Adam', gold: 1000 });
 
-    data.should.deepEqual({ type: TEST_TYPE, name: 'Adam', gold: 1000 });
+    data.should.deep.equal({ type: TEST_TYPE, name: 'Adam', gold: 1000 });
   });
 });
 

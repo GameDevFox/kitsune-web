@@ -1,22 +1,10 @@
-import _ from 'lodash';
+import TicketGroup from './ticket-group';
 
-const Split = (...listeners) => {
-  let idCounter = 0;
-  const outputs = {};
+const Split = (...outputs) => {
+  const group = TicketGroup(...outputs);
 
-  const split = (...args) => _.mapValues(outputs, output => output(...args));
-
-  const add = output => {
-    const id = ++idCounter;
-    outputs[id] = output;
-
-    const remove = () => delete outputs[id];
-    remove.id = id;
-    return remove;
-  };
-  split.add = add;
-
-  listeners.forEach(add);
+  const split = (...args) => group().map(output => output(...args));
+  split.add = output => group.add(output);
 
   return split;
 };

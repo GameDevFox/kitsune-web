@@ -24,14 +24,16 @@ export default class VerticalSplit extends Component {
 
     const { activeView, children: { left, right } } = this.props;
 
+    const direction = this.props.direction === 'vertical' ? 'vertical' : 'horizontal';
+
     return (
-      <div className="vertical-split">
+      <div className={`vertical-split ${direction}`}>
         <Pane active={activeView === 'left'} header={leftIcon}>
           <div>This is in left</div>
           {left}
         </Pane>
         <Pane active={activeView === 'right'} header={rightIcon}>
-          This is in right
+          <div>This is in right</div>
           {right}
         </Pane>
       </div>

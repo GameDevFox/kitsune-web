@@ -1,4 +1,5 @@
-import should from 'should';
+/* eslint-disable no-unused-expressions */
+import { expect } from 'chai';
 import { spy } from 'sinon';
 
 import { Rules } from './rules';
@@ -13,20 +14,20 @@ describe('Rules({...})', () => {
     });
 
     let rule = rules('even !negative');
-    rule(10).should.be.true();
-    rule(15).should.be.false();
-    rule(-10).should.be.false();
+    rule(10).should.be.true;
+    rule(15).should.be.false;
+    rule(-10).should.be.false;
 
     rule = rules.union('!odd negative', 'evenOrNeg');
-    rule(12).should.be.true();
-    rule(-7).should.be.true();
-    rule(-8).should.be.true();
-    rule(21).should.be.false();
+    rule(12).should.be.true;
+    rule(-7).should.be.true;
+    rule(-8).should.be.true;
+    rule(21).should.be.false;
 
     rule = rules('evenOrNeg large'); // Using our stored union rule above
-    rule(50).should.be.false();
-    rule(123).should.be.false();
-    rule(200).should.be.true();
+    rule(50).should.be.false;
+    rule(123).should.be.false;
+    rule(200).should.be.true;
 
     // Actions
     const mySpy = spy(x => x * 2);
@@ -38,7 +39,7 @@ describe('Rules({...})', () => {
     action(12).should.equal(24);
     mySpy.callCount.should.equal(1);
 
-    should(action(13)).be.undefined();
+    expect(action(13)).to.be.undefined;
     mySpy.callCount.should.equal(1);
 
     action = rules('even !negative', mySpy, yourSpy);
@@ -49,7 +50,7 @@ describe('Rules({...})', () => {
     mySpy.callCount.should.equal(2);
     yourSpy.callCount.should.equal(1);
 
-    should(action(13)).be.undefined();
+    expect(action(13)).to.be.undefined;
     mySpy.callCount.should.equal(2);
     yourSpy.callCount.should.equal(1);
   });

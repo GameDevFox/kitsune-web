@@ -6,13 +6,13 @@ describe('Requests', () => {
     requests.add('i-need-this');
     requests.add('something')
       .then(value => {
-        value.should.deepEqual({ one: 2, three: 4 });
+        value.should.deep.equal({ one: 2, three: 4 });
         done();
       })
       .catch(done);
 
     const reqList = requests.get();
-    reqList.should.containDeep({ 1: { type: 'i-need-this' }, 2: { type: 'something' } });
+    reqList.should.containSubset({ 1: { type: 'i-need-this' }, 2: { type: 'something' } });
     reqList[2].resolve({ one: 2, three: 4 });
   });
 
@@ -28,7 +28,7 @@ describe('Requests', () => {
       });
 
     const reqList = requests.get();
-    reqList.should.containDeep({ 1: { type: 'something-else' } });
+    reqList.should.containSubset({ 1: { type: 'something-else' } });
     reqList[1].reject('banana');
   });
 });

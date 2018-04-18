@@ -18,9 +18,11 @@ rules:
   keyword-spacing:
     - error
     - overrides:
+        for:
+          after: false
         if:
           after: false
-        for:
+        while:
           after: false
   new-cap:
     - error

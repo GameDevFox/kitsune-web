@@ -11,6 +11,6 @@ describe('mapWith', () => {
     };
 
     const result = mapWith([1, 'one', 'last'], map);
-    result.should.deepEqual(['hello', 'more time', 'this is it']);
+    result.should.deep.equal(['hello', 'more time', 'this is it']);
   });
 });

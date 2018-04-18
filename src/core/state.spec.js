@@ -10,7 +10,7 @@ describe('State', () => {
     (typeof state).should.equal('function');
 
     output.callCount.should.equal(1);
-    output.getCall(0).args.should.deepEqual([123]);
+    output.getCall(0).args.should.deep.equal([123]);
   });
 
   it('mixins should work', () => {
@@ -28,7 +28,7 @@ describe('State', () => {
 
     state.push('another-one', 456);
     output.callCount.should.equal(1);
-    output.getCall(0).args.should.deepEqual([
+    output.getCall(0).args.should.deep.equal([
       {
         hello: 'world',
         'another-one': 456

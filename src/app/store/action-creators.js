@@ -21,6 +21,15 @@ export function setActiveView(activeView) {
 }
 
 // VSplit
-export function switchFocus() {
-  return { type: 'SWITCH_FOCUS' };
+export function switchFocus(subView) {
+  const action = { type: 'SWITCH_FOCUS' };
+
+  if(subView)
+    action.subView = subView;
+
+  return action;
+}
+
+export function switchDirection() {
+  return { type: 'SWITCH_DIRECTION' };
 }

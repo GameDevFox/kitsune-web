@@ -45,6 +45,8 @@ const useRules = (...ruleNames) => _.values(_.pick(rules, ruleNames));
 
 const configs = {
   dev: {
+    mode: 'development',
+
     entry: './src/index.js',
     output: {
       path: outputPath,
@@ -72,6 +74,8 @@ const configs = {
   },
 
   test: {
+    mode: 'development',
+
     entry: './src/index.spec.js',
     output: {
       path: outputPath,
@@ -87,6 +91,8 @@ const configs = {
   },
 
   production: {
+    mode: 'production',
+
     entry: './src/index.js',
     output: {
       path: outputPath,

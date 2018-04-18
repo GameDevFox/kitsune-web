@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { superMap } from '../../core';
+import { easyMap } from '../../core';
 import { getViewState } from '../store';
 import { getViewConfig } from './config';
 
 class ViewTree extends Component {
   buildView(viewId) {
     const { activeView, children = [], props } = getViewState(viewId) || {};
-    const childViews = superMap(children, viewId => this.buildView(viewId));
+    const childViews = easyMap(children, viewId => this.buildView(viewId));
 
     const viewConfig = getViewConfig(viewId, true);
 

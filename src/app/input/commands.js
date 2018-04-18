@@ -1,17 +1,19 @@
 import toastr from 'toastr';
 
-import { getActiveViewList } from '../store';
-import { getViewConfig } from '../view-tree/config';
+import { forEachView } from '../view-tree/config';
 
 const findCommand = name => {
-  const activeViews = [...getActiveViewList(), 'default'];
+  let command;
 
-  for(const viewId of activeViews) {
-    const { commands = {} } = getViewConfig(viewId) || {};
+  forEachView(viewConfig => {
+    const { commands = {} } = viewConfig;
 
-    if(commands[name])
-      return commands[name];
-  }
+    command = commands[name];
+    if(command !== undefined)
+      return false;
+  });
+
+  return command;
 };
 
 const command = cmdStr => {
