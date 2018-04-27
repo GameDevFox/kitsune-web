@@ -12,19 +12,19 @@ const reducer = Reducer({
     if(action.subView)
       activeView = action.subView;
     else
-      activeView = state.children.vsplit.activeView === 'left' ? 'right' : 'left';
+      activeView = state.children.split.activeView === 'left' ? 'right' : 'left';
 
-    return _.merge({}, state, { children: { vsplit: { activeView } } });
+    return _.merge({}, state, { children: { split: { activeView } } });
   },
   SWITCH_DIRECTION: state => {
-    let { direction } = state.children.vsplit.props;
+    let { direction } = state.children.split.props;
     direction = direction === 'vertical' ? 'horizontal' : 'vertical';
-    return _.merge({}, state, { children: { vsplit: { props: { direction } } } });
+    return _.merge({}, state, { children: { split: { props: { direction } } } });
   }
 }, {
   activeView: null,
   children: {
-    vsplit: {
+    split: {
       activeView: 'left',
       children: { left: 'node-list', right: 'test' },
       props: {

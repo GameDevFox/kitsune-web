@@ -20,7 +20,7 @@ export function setActiveView(activeView) {
   return { type: 'SET_ACTIVE_VIEW', activeView };
 }
 
-// VSplit
+// Split
 export function switchFocus(subView) {
   const action = { type: 'SWITCH_FOCUS' };
 

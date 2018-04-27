@@ -30,7 +30,7 @@ writeString('Welcome to Kitsune').then(() =>
 window.addEventListener('keydown', keySplit);
 
 // Load initial view based on location or default
-setActiveView('vsplit');
+setActiveView('split');
 
 // Render App
 render(<App/>, document.getElementById('root'));

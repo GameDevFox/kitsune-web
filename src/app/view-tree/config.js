@@ -100,11 +100,11 @@ const config = {
       goodbye: () => console.log('さようなら')
     }
   },
-  vsplit: {
+  split: {
     view: Split,
     commands: {
-      hello: () => console.log('Hello VSplit'),
-      another: () => console.log('Another VSplit'),
+      hello: () => console.log('Hello Split'),
+      another: () => console.log('Another Split'),
       sw: switchFocus,
       switch: switchFocus
     },
