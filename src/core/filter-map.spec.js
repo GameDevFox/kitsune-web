@@ -1,6 +1,6 @@
 import { filterMap } from './index';
 
-describe('filter-map(mappings)', () => {
+describe('filterMap(mappings)', () => {
   it('should work', () => {
     const map = filterMap([
       [x => x % 2 === 0, 'a'],
