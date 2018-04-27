@@ -14,7 +14,7 @@ import { getActiveViewList } from '../store';
 import actions from '../store/actions';
 
 const Test = () => <div>This is a test component. And I&apos;m going to put a lot of content in here to see if it scales properly.</div>;
-const Test2 = () => <div>Another Test</div>;
+const HelloJapanese = () => <div>こにちは</div>;
 const Default = ({ viewId }) => <div>No view found for node: {viewId}</div>;
 
 const {
@@ -94,8 +94,8 @@ const config = {
       [rules('k shift'), () => console.log('INSIDE')]
     ]
   },
-  test2: {
-    view: Test2,
+  helloJapanese: {
+    view: HelloJapanese,
     commands: {
       goodbye: () => console.log('さようなら')
     }

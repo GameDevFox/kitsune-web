@@ -26,7 +26,7 @@ const reducer = Reducer({
   children: {
     split: {
       activeView: 'left',
-      children: { left: 'node-list', right: 'test' },
+      children: { left: 'node-list', right: 'helloJapanese' },
       props: {
         direction: 'vertical'
       }

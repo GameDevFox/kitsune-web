@@ -27,16 +27,8 @@ export const easyMap = (input, fn) => {
   return result;
 };
 
-export const filterMap = mappings => {
-  return input => {
-    const result = [];
-
-    mappings.forEach(mapping => {
-      const [filterFn, value] = mapping;
-      if(filterFn(input))
-        result.push(value);
-    });
-
-    return result;
-  };
+export const filterMap = mappings => input => {
+  return mappings
+    .filter(entry => entry[0](input))
+    .map(entry => entry[1]);
 };
