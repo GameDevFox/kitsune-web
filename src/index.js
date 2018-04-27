@@ -5,7 +5,7 @@ import { render } from 'react-dom';
 import toastr from 'toastr';
 
 import App from './app';
-import keySplit from './app/input/key-split';
+import keyHandler from './app/input/key-handler';
 import actions from './app/store/actions';
 import config from './config';
 
@@ -27,7 +27,7 @@ writeString('Welcome to Kitsune').then(() =>
 );
 
 // Register KeyHandler
-window.addEventListener('keydown', keySplit);
+window.addEventListener('keydown', keyHandler);
 
 // Load initial view based on location or default
 setActiveView('split');

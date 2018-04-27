@@ -14,7 +14,7 @@ import { getActiveViewList } from '../store';
 import actions from '../store/actions';
 
 const Test = () => <div>This is a test component. And I&apos;m going to put a lot of content in here to see if it scales properly.</div>;
-const HelloJapanese = () => <div>こにちは</div>;
+const HelloJapanese = () => <div>こにちは。</div>;
 const Default = ({ viewId }) => <div>No view found for node: {viewId}</div>;
 
 const {
@@ -49,25 +49,28 @@ const config = {
     keys: [
       [rules('simpleKey !shift !ctrl !alt !meta'), commandInput],
 
-      [rules('s alt'), prevent, () => {
+      [rules('s alt'), e => {
+        prevent(e);
         requests.add('string', { header: <Icon type="search"/> }).then(string => {
           kitsuneService.searchStrings(string).then(strings => _.map(strings, writeString), ignore);
         });
       }],
 
-      [rules('space !shift !alt'), prevent, () => {
+      [rules('space !shift !alt'), e => {
+        prevent(e);
         requests.add('string', { header: <Icon type="quote-right"/> }).then(string => {
           writeString(string);
         }, ignore);
       }],
-      [rules('space shift !alt'), prevent, () => {
+      [rules('space shift !alt'), e => {
+        prevent(e);
         requests.add('text', { header: <Icon type="file-text-o"/> }).then(string => {
           writeString(string);
         }, ignore);
       }],
 
       [rules('f shift'), () => screenfull.enabled && screenfull.toggle(document.body)],
-      [rules('k shift'), e => console.log('KEY', e), () => console.log('LAST')]
+      [rules('k shift'), e => { console.log('KEY', e); console.log('LAST'); }]
     ]
   },
   'node-list': {
