@@ -3,7 +3,7 @@ import React from 'react';
 import screenfull from 'screenfull';
 
 import Icon from '../../components/icon';
-import VerticalSplit from '../../components/vertical-split';
+import Split from '../../components/split';
 
 import { commandInput } from '../input/command';
 import kitsuneService from '../kitsune-service';
@@ -101,7 +101,7 @@ const config = {
     }
   },
   vsplit: {
-    view: VerticalSplit,
+    view: Split,
     commands: {
       hello: () => console.log('Hello VSplit'),
       another: () => console.log('Another VSplit'),

@@ -1,4 +1,4 @@
-import './vertical-split.scss';
+import './split.scss';
 
 import React, { Component, Fragment } from 'react';
 
@@ -17,7 +17,7 @@ const Pane = props => {
   );
 };
 
-export default class VerticalSplit extends Component {
+export default class Split extends Component {
   render() {
     const leftIcon = <Fragment><kbd>A</kbd> Left</Fragment>;
     const rightIcon = <Fragment><kbd>S</kbd> Right</Fragment>;
@@ -27,7 +27,7 @@ export default class VerticalSplit extends Component {
     const direction = this.props.direction === 'vertical' ? 'vertical' : 'horizontal';
 
     return (
-      <div className={`vertical-split ${direction}`}>
+      <div className={`split ${direction}`}>
         <Pane active={activeView === 'left'} header={leftIcon}>
           <div>This is in left</div>
           {left}
