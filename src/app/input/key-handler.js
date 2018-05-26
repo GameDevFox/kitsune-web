@@ -8,7 +8,10 @@ import { filterMap } from '../../core';
 
 const rootRules = filterMap([
   [rules('space alt'), () => document.activeElement.blur()],
-  [rules('backtick !shift !ctrl !alt !meta'), e => { prevent(e); commandInput(e); }],
+  [rules('backtick !shift !ctrl !alt !meta'), e => {
+    prevent(e);
+    commandInput(e);
+  }]
 ]);
 
 // Process ViewTree keys

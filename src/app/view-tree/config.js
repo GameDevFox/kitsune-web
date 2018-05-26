@@ -70,7 +70,10 @@ const config = {
       }],
 
       [rules('f shift'), () => screenfull.enabled && screenfull.toggle(document.body)],
-      [rules('k shift'), e => { console.log('KEY', e); console.log('LAST'); }]
+      [rules('k shift'), e => {
+        console.log('KEY', e);
+        console.log('LAST');
+      }]
     ]
   },
   'node-list': {
