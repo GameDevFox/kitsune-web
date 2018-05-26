@@ -5,11 +5,7 @@ export const WRITE_STRING = 'fc9b664949f9da76c96475cd50578b8755070a060923bafe2e4
 // Compound node ids
 export const SEARCH_STRING = 'a0225ff71229f55c76d7f7b65c32da14f37327c7cd6d773e8af47e162d179894';
 
-// WEBAPP IDS
-
-const path = parts => {
-  return parts.join('/');
-};
+const path = parts => parts.join('/');
 
 const KitsuneService = request => {
   const post = (parts, data) => {

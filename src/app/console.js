@@ -1,4 +1,6 @@
-.console {
+import styled from 'styled-components';
+
+const Console = styled.div.withConfig({ displayName: 'Console' })`
   display: flex;
   flex-direction: column;
 
@@ -11,4 +13,5 @@
     margin-top: 0;
     margin-bottom: 0;
   }
-}
+`;
+export default Console;

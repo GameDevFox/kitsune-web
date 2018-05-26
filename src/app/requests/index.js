@@ -11,8 +11,8 @@ import Requests from '../../services/requests';
 export const requests = Requests();
 
 export default class RequestList extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     const reqList = requests.get();
     this.state = { reqList };
