@@ -1,7 +1,6 @@
-import './requests.scss';
-
 import _ from 'lodash';
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 import TextRangeEntry from './text-range-entry';
 import { rules } from '../rules';
@@ -9,6 +8,18 @@ import { rules } from '../rules';
 import Requests from '../../services/requests';
 
 export const requests = Requests();
+
+const Styles = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+
+  background-color: #2b2b2b;
+  border-top: 3px solid orange;
+  padding: 4px 10px;
+`;
 
 export default class RequestList extends Component {
   constructor() {
@@ -38,6 +49,6 @@ export default class RequestList extends Component {
       );
     });
 
-    return reqList.length ? <div className="requests">{reqList.reverse()}</div> : null;
+    return reqList.length ? <Styles className="requests">{reqList.reverse()}</Styles> : null;
   }
 }

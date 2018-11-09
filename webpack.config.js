@@ -25,7 +25,7 @@ const rules = {
     loader: 'babel-loader'
   },
   scss: {
-    test: /\.scss$/,
+    test: /\.s?css$/,
     loaders: [
       'style-loader',
       'css-loader',
@@ -33,7 +33,7 @@ const rules = {
     ]
   },
   scssTest: {
-    test: /\.scss$/,
+    test: /\.sc?ss$/,
     loaders: [
       'css-loader',
       'sass-loader'

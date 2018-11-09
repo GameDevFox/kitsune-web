@@ -1,17 +1,23 @@
-import './node-view.scss';
-
-import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import React, { Fragment } from 'react';
+import styled from 'styled-components';
 
-import NodeId from '../node-id';
+import NodeId from './node-id';
+
+const Styles = styled.div`
+  border: 2px solid dimgrey;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  padding: 4px;
+`;
 
 const NodeView = props => {
   const { node } = props;
   return (
-    <div className="node-view">
+    <Styles className="node-view">
       <NodeId id={node.id}/>
       {node.string && <Fragment><br/><pre>{node.string}</pre></Fragment>}
-    </div>
+    </Styles>
   );
 };
 

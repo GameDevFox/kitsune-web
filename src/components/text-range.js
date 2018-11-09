@@ -1,10 +1,27 @@
-import './text-range.scss';
-
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
 
 import _ from 'lodash';
 import $ from 'jquery';
+
+const Styles = styled.div`
+  display: inline-block;
+
+  .text {
+    font-family: monospace, monospace;
+    font-size: 1em;
+    white-space: pre;
+  }
+
+  textarea {
+    overflow: hidden;
+  }
+
+  pre {
+    display: none;
+  }
+`;
 
 export default class TextRange extends React.Component {
   constructor() {
@@ -48,10 +65,10 @@ export default class TextRange extends React.Component {
       .replace(/\n$/, '\n ');
 
     return (
-      <div className="text-range">
+      <Styles className="text-range">
         <textarea ref={el => (this.textArea = el)} className="text" value={value} onChange={e => this.onChange(e)} {...otherProps}/>
         <pre ref={el => (this.pre = el)} className="text">{preValue}</pre>
-      </div>
+      </Styles>
     );
   }
 
