@@ -1,115 +1,78 @@
 'use strict';
 
-const _ = require('lodash');
-const webpack = require('webpack');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const outputPath = process.cwd() + '/dist';
+const env = process.env.NODE_ENV || 'production';
+console.log(`Webpack ENV: ${env}`);
 
-const rules = {
-  eslint: {
-    test: /\.js$/,
-    exclude: /node_modules/,
-    loader: 'eslint-loader',
-    enforce: 'pre'
-  },
-  babel: {
-    test: /\.js$/,
-    exclude: /node_modules/,
-    loader: 'babel-loader'
-  },
-  babelDev: {
-    test: /\.js$/,
-    exclude: /node_modules/,
-    loader: 'babel-loader'
-  },
-  scss: {
-    test: /\.s?css$/,
-    loaders: [
-      'style-loader',
-      'css-loader',
-      'sass-loader'
+// default production config
+const config = {
+  mode: 'production',
+
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'eslint-loader',
+        enforce: 'pre'
+      }, {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      }, {
+        test: /\.css$/,
+        loaders: [
+          'style-loader',
+          'css-loader'
+        ]
+      }
     ]
   },
-  scssTest: {
-    test: /\.sc?ss$/,
-    loaders: [
-      'css-loader',
-      'sass-loader'
-    ]
-  }
+
+  // resolve: {
+  //   alias: {
+  //     Env: path.resolve(__dirname, 'src/env/prod')
+  //   }
+  // },
+
+  plugins: [
+    new HtmlWebpackPlugin({ template: './src/index.html' })
+  ]
 };
 
-const useRules = (...ruleNames) => _.values(_.pick(rules, ruleNames));
-
-const configs = {
-  dev: {
+if(env === 'development') {
+  Object.assign(config, {
     mode: 'development',
-
-    entry: './src/index.js',
-    output: {
-      path: outputPath,
-      publicPath: '/',
-      filename: 'app-[hash].js'
-    },
-
     devtool: 'source-map',
 
     devServer: {
       historyApiFallback: true,
       hot: true,
-      port: 3000,
+      port: 4000,
       overlay: true
     },
 
-    plugins: [
-      new HtmlWebpackPlugin({ template: './src/index.html' }),
-      new webpack.NamedModulesPlugin(),
-      new webpack.HotModuleReplacementPlugin()
-    ],
-    module: {
-      rules: useRules('babelDev', 'eslint', 'scss')
-    }
-  },
+    // resolve: {
+    //   alias: {
+    //     Env: path.resolve(__dirname, 'src/env/dev')
+    //   }
+    // }
+  });
+}
 
-  test: {
+if(env === 'test') {
+  Object.assign(config, {
     mode: 'development',
+    target: 'node',
 
-    entry: './src/index.spec.js',
+    entry: './src/index.spec',
     output: {
-      path: outputPath,
-      publicPath: '/',
       filename: 'spec.js'
     },
 
-    devtool: 'source-map',
+    devtool: 'source-map'
+  });
+}
 
-    module: {
-      rules: useRules('babel', 'eslint', 'scssTest')
-    }
-  },
-
-  production: {
-    mode: 'production',
-
-    entry: './src/index.js',
-    output: {
-      path: outputPath,
-      publicPath: '/',
-      filename: 'app-[hash].js'
-    },
-
-    plugins: [
-      new HtmlWebpackPlugin({ template: './src/index.html' })
-    ],
-    module: {
-      rules: useRules('babel', 'eslint', 'scss')
-    }
-  }
-};
-
-const nodeEnv = process.env.NODE_ENV || 'production';
-
-let config = configs[nodeEnv];
 module.exports = config;

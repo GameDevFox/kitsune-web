@@ -8,8 +8,6 @@ import ViewTree from './view-tree';
 
 import store from './store';
 
-
-
 const App = () => (
   <Provider store={store}>
     <Console>

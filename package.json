@@ -1,5 +1,16 @@
 {
-  "license": "GPL-3.0",
+  "name": "kitsune-web",
+  "version": "1.0.0",
+  "author": "Edward Nicholes Jr.",
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "build": "webpack",
+    "clean": "rm -rf ./.nyc_output ./.tmp ./coverage ./dist",
+    "serve": "NODE_ENV=development webpack-dev-server --hot",
+    "test": "NODE_ENV=test webpack && nyc --reporter=html --include 'src/**/*.js' mocha --require source-map-support/register dist/spec.js",
+    "test:debug": "NODE_ENV=test webpack && nyc --reporter=html --include 'src/**/*.js' mocha --inspect-brk --require source-map-support/register dist/spec.js",
+    "test:watch": "NODE_ENV=test mocha-webpack --require source-map-support/register --watch --webpack-config webpack.config.js src/index.spec.js"
+  },
   "devDependencies": {
     "axios": "^0.18.0",
     "babel-core": "^6.26.0",
@@ -24,7 +35,6 @@
     "lodash": "^4.17.10",
     "mocha": "^5.1.1",
     "mocha-webpack": "^2.0.0-beta.0",
-    "node-sass": "^4.9.0",
     "nyc": "^11.7.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
@@ -33,22 +43,13 @@
     "react-redux": "^5.0.7",
     "react-test-renderer": "^16.3.2",
     "redux": "^4.0.0",
-    "sass-loader": "^7.0.1",
     "screenfull": "^3.3.2",
     "sinon": "^4.5.0",
     "style-loader": "^0.21.0",
     "styled-components": "^3.2.6",
     "toastr": "^2.1.4",
-    "webpack": "^4.6.0",
-    "webpack-cli": "^2.0.15",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.3"
-  },
-  "scripts": {
-    "build": "webpack",
-    "clean": "rm -rf ./.nyc_output ./.tmp ./coverage ./dist",
-    "serve": "NODE_ENV=dev webpack-dev-server",
-    "test": "NODE_ENV=test webpack && nyc --reporter=html --include 'src/**/*.js' mocha --require source-map-support/register dist/spec.js",
-    "test:debug": "NODE_ENV=test webpack && nyc --reporter=html --include 'src/**/*.js' mocha --inspect-brk --require source-map-support/register dist/spec.js",
-    "test:watch": "NODE_ENV=test mocha-webpack --require source-map-support/register --watch --webpack-config webpack.config.js src/index.spec.js"
   }
 }
